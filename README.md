@@ -24,8 +24,20 @@ To get started and run the app, you need to follow these simple steps:
 4. Select "Add Firebase to your iOS app" option, type the bundle Identifier & click continue.
 5. Download "GoogleService-Info.plist" file and add to the project. Make sure file name is "GoogleService-Info.plist".
 6. Go to [Firebase Console](https://console.firebase.google.com), select your project, choose "Authentication" from left menu, select "SIGN-IN METHOD" and enable "Email/Password" option.
-7. Open the terminal, navigate to project folder and run "pod update". 
+7. Open the terminal, navigate to project folder and run "pod update".
 8. You're all set! Run Quick Chat on your iPhone or the iOS Simulator.
+
+9. Change Storage > Rules in Firebase console to allow read and write to non authorised users (yeah I know it's wrong but it's the only way this works)
+
+```
+service firebase.storage {
+  match /b/{bucket}/o {
+    match /{allPaths=**} {
+      allow read, write;
+    }
+  }
+}
+```
 
 ## Compatibility
 
